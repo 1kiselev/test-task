@@ -1,8 +1,8 @@
 <template>
     <div class="card">
         <div class="card__logo"><img :src="props.logoSrc" alt="Логотип команды"
-            height="100px"
-            width="100px"
+            height="200px"
+            width="200px"
             ></div>
         <div class="card__name">{{ props.name }}</div>
         <div class="card__venue">{{ props.venue }}</div>
@@ -30,20 +30,28 @@ const props = defineProps({
 <style lang="scss">
 .card {
     margin: 20px;
-    width: 100px;
-    height: 200px;
+    width: 200px;
+    height: 260px;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px rgb(81, 81, 81);
     border-radius: 20px;
 
+
+
     &__logo {
-        height: 100px;
-        width: 100px;
+        height: 200px;
+        width: 200px;
+        padding-bottom: 10px;
+        border-bottom: solid 2px rgb(81, 81, 81);
     }
     &__name {
-        margin: 20;
+        margin-top: 10px;
     }
     &__venue {
-        margin: 10;
+        margin: 5px;
     }
 }
 

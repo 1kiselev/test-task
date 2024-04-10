@@ -26,6 +26,7 @@ export const useMainStore = defineStore('mainStore', {
                         if (team[key].toString().toLowerCase().indexOf(value) != -1) {
                             // console.log(team[key], key)
                             result.push(team)
+                            break
     
                         }
                     }
