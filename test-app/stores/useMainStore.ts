@@ -1,9 +1,8 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-import type { Team } from "../types";
+import type { TeamsArray } from "../types";
 
-interface TeamsArray extends Array<Team> { }
 
 export const useMainStore = defineStore('mainStore', {
     state: () => ({
@@ -14,7 +13,7 @@ export const useMainStore = defineStore('mainStore', {
             // function search(obj){
                 
             // }
-            return <TeamsArray>(value: String) => {
+            return (value: String): TeamsArray => {
 
                 value = value.toLowerCase()
                 
@@ -42,6 +41,7 @@ export const useMainStore = defineStore('mainStore', {
     },
     actions: {
         async fetchTeams() {
+
             const { data } = await useFetch('api/teams/')
             //Парсинг полученных данных необходим чтобы убрать все лишние поля из response-объекта
             const dataTyped: TeamsArray = data.value.data.teams.map(team => { 

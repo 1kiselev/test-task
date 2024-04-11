@@ -1,6 +1,6 @@
 <template>
-    <div class="main_page">
-        <h1>Main page</h1>
+    <div class="main-page">
+        <h3 class="main-page__header">Публичное API: https://www.football-data.org/</h3>
         <CatalogueField />
     </div>  
 </template>
@@ -21,5 +21,12 @@ const teams = computed(() => useMainStore().teams)
 </script>
 
 <style lang="scss">
+.main-page {
+
+    &__header {
+        margin-left: 50px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+}
 
 </style>

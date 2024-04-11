@@ -1,23 +1,26 @@
 <template>
   <div class="field">
     <div class="field__tools">
-      <input type="text" :value="searchedValue" @input="(event) => fun(event)"/>
+      <input type="text" placeholder="Поиск" :value="searchedValue" @input="(event) => fun(event)"/>
+      <span class="field__span">Плиточный вид</span>
       <input type="checkbox" class="field__switch" :checked="switchValue" @input="(event) => switchFun(event)">
     </div>
+    <BaseModal v-model:showModal="showModal">
+      <BaseCard :teamData="choosenTeam" />
+    </BaseModal>
     <div :class="`field__content` + displayType">
       <CatalogueCard 
         v-for="team in paginatedTeams" :key="team.id"
-        :name="team.name"
-        :venue="team.venue"
-        :logoSrc="team.logoSrc"
+        :teamData="team"
+        @click="chooseTeam(team)"
       />
     </div>
-    <CatalogueNavigation :numberOfPages="numberOfPages" :currentPage="currentPage" @update:value="(value) => currentPage = value"/>
+    <CatalogueNavigation :numberOfPages="numberOfPages" :currentPage="currentPage" @update:value="(value: number) => currentPage = value"/>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch, type ComputedRef } from 'vue';
+import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 
 import { usePagination } from "../../composables/usePaginatation"
 import type { Team } from '~/types';
@@ -26,8 +29,8 @@ import { useMainStore } from '../../stores/useMainStore';
 
 const searchedValue = ref('')
 
-const fun = (event) => {
-    searchedValue.value = event.target.value
+const fun = (event: Event) => {
+    searchedValue.value = event.target?.value
     // console.log(event.target.value)
 }
 
@@ -49,11 +52,21 @@ watch(numberOfPages, () => {
 
 const switchValue = ref(true);
 const switchFun = (event: Event) => {
-  itemsPerPage.value = event.target.checked ? 9 : 5
-  switchValue.value = event.target.checked
+  itemsPerPage.value = event.target?.checked ? 9 : 5
+  switchValue.value = event.target?.checked
 }
 
 const displayType = computed(() => switchValue.value ? "__grid" : "__horizontal" )
+
+const showModal = ref(false)
+
+const choosenTeam: Ref<Team | null> = ref(null)
+
+const chooseTeam = (team: Team) => {
+  console.log(team)
+  showModal.value = true
+  choosenTeam.value = team
+}
 
 </script>
 
@@ -96,6 +109,12 @@ const displayType = computed(() => switchValue.value ? "__grid" : "__horizontal"
     height: 20px;
     width: 20px;
     margin: 20px;
+  }
+
+  &__span {
+    margin-left: 15px;
+    // font-size: large;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 }
 

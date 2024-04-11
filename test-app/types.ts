@@ -13,3 +13,5 @@ export type Team = {
     logoSrc: String,
     squad: Array<Player>,
 }
+
+export interface TeamsArray extends Array<Team> { }

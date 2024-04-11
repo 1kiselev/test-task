@@ -1,27 +1,20 @@
 <template>
     <div class="card">
-        <div class="card__logo"><img :src="props.logoSrc" alt="Логотип команды"
+        <div class="card__logo"><img :src="props.teamData.logoSrc" alt="Эмблема клуба"
             height="200px"
             width="200px"
             ></div>
-        <div class="card__name">{{ props.name }}</div>
-        <div class="card__venue">{{ props.venue }}</div>
+        <div class="card__name">{{ props.teamData.name }}</div>
+        <div class="card__venue">{{ props.teamData.venue }}</div>
     </div>
 </template>
 
 <script lang="ts" setup>
+import type { Team } from "../../types"
 
 const props = defineProps({
-    name: {
-        type: String,
-        required: true,
-    },
-    logoSrc: {
-        type: String,
-        required: true,
-    },
-    venue: {
-        type: String,
+    teamData: {
+        type: Object,
         required: true,
     }
 })

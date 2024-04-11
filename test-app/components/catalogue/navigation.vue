@@ -1,16 +1,16 @@
 <template>
   <div class="navigation">
-    <div class="navigation__previous"
+    <div class="navigation__move"
         @click="$emit('update:value', props.currentPage - 1)"
         v-show="props.currentPage != 1"
     >Prev</div>
     <div class="navigation__pages">
-        <div class="navigation__cell"
+        <div :class="props.currentPage === number ? `navigation__cell__active` : `navigation__cell` "
             v-for="number in pageNumbers" :key="number"
             @click="$emit('update:value', number)"
         >{{ number }}</div>
     </div>
-    <div class="navigation__next"
+    <div class="navigation__move"
         @click="$emit('update:value', props.currentPage + 1)"
         v-show="props.currentPage != props.numberOfPages"
     >Next</div>
@@ -51,33 +51,43 @@ for (let i = 1; i <= props.numberOfPages; i++){
     display: flex;
     justify-content: center;
     gap: 5px;
-    width: 50%;
-    border: solid 2px teal;
+    width: 100%;
+    margin-top: 40px;   
+    // border: solid 2px teal;
     
-    &__previous {
+    &__move {
         height: 10px;
         width: 40px;
         padding: 5px;
-        background: #000;
+        padding-bottom: 10px;
+        border-radius: 3px;
+        background: #464141;
         color: aliceblue;
     }
-    &__next {
-        height: 10px;
-        width: 40px;
-        padding: 5px;
-        background: #000;
-        color: aliceblue;
-    }
-    &__pages{
+    &__pages {
         display: flex;
         gap: 3px;
     }
     &__cell {
         height: 10px;
         padding: 5px;
+        padding-bottom: 10px;
         width: 40px;
-        background: #000;
+        border-radius: 3px;
+        text-align: center;
+        background: teal;
         color: aliceblue;
+        &__active {
+            height: 10px;
+            padding: 5px;
+            padding-bottom: 10px;
+            width: 40px;
+            font-weight: bold;
+            border-radius: 3px;
+            text-align: center;
+            background: rgb(128, 0, 128);
+            color: aliceblue;
+        }
     }
 }
 

@@ -1,7 +1,6 @@
 import { computed, type Ref, ref, type ComputedRef } from "vue";
-import type { Team } from "~/types";
+import type { TeamsArray } from "~/types";
 
-interface TeamsArray extends Array<Team> { }
 
 
 interface PaginationConfig<T> {
@@ -12,7 +11,7 @@ interface PaginationConfig<T> {
 
 export function usePagination<T>(config: PaginationConfig<T>) {
   const itemsPerPage = config.itemsPerPage || ref(100);
-  console.log(config.arrayToPaginate.value, config.itemsPerPage.value, '!!!!!');
+  console.log(config.arrayToPaginate.value, config.itemsPerPage?.value, '!!!!!');
   const paginatedArray = computed(() =>
     config.arrayToPaginate.value.slice(
       (config.currentPage.value - 1) * itemsPerPage.value,
