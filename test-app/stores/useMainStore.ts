@@ -7,31 +7,33 @@ interface TeamsArray extends Array<Team> { }
 
 export const useMainStore = defineStore('mainStore', {
     state: () => ({
-        teams<TeamsArray>: null,
+        teams<TeamsArray>: [],
     }),
     getters: {
         getSearched(state){
             // function search(obj){
                 
             // }
-            return (value: String) => {
-                if (value === "") return state.teams;
+            return <TeamsArray>(value: String) => {
+
+                value = value.toLowerCase()
+                
+                if (value === "" || state.teams.length === 0) return state.teams;
                 let result: TeamsArray = []
-                // console.log(state.teams)
+                // console.log(value)
                 for (let team of state.teams) {
                     // console.log(team)
                     for(let key in team){
                         // console.log(key)
-                        if (key === 'squad') continue;
+                        if (key === 'squad' || key === "logoSrc" || key === "id" ) continue;
                         if (team[key].toString().toLowerCase().indexOf(value) != -1) {
-                            // console.log(team[key], key)
+                            console.log(team[key], key)
                             result.push(team)
                             break
-    
                         }
                     }
                 }
-                console.log(result)
+                // console.log(result)
                 return result
             }
 
@@ -41,7 +43,6 @@ export const useMainStore = defineStore('mainStore', {
     actions: {
         async fetchTeams() {
             const { data } = await useFetch('api/teams/')
-            // console.log(data.value, data.value.data.teams)
             //Парсинг полученных данных необходим чтобы убрать все лишние поля из response-объекта
             const dataTyped: TeamsArray = data.value.data.teams.map(team => { 
                 return {

@@ -31,7 +31,7 @@ const props = defineProps({
 .card {
     margin: 20px;
     width: 200px;
-    height: 260px;
+    height: 270px;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -52,6 +52,7 @@ const props = defineProps({
     }
     &__venue {
         margin: 5px;
+        // overflow: scroll;
     }
 }
 
