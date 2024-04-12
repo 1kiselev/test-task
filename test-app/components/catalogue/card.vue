@@ -45,7 +45,6 @@ const props = defineProps({
     }
     &__venue {
         margin: 5px;
-        // overflow: scroll;
     }
 }
 

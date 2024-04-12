@@ -11,7 +11,6 @@ interface PaginationConfig<T> {
 
 export function usePagination<T>(config: PaginationConfig<T>) {
   const itemsPerPage = config.itemsPerPage || ref(100);
-  console.log(config.arrayToPaginate.value, config.itemsPerPage?.value, '!!!!!');
   const paginatedArray = computed(() =>
     config.arrayToPaginate.value.slice(
       (config.currentPage.value - 1) * itemsPerPage.value,

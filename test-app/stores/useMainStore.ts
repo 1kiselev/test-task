@@ -10,29 +10,19 @@ export const useMainStore = defineStore('mainStore', {
     }),
     getters: {
         getSearched(state){
-            // function search(obj){
-                
-            // }
             return (value: String): TeamsArray => {
-
                 value = value.toLowerCase()
-                
                 if (value === "" || state.teams.length === 0) return state.teams;
                 let result: TeamsArray = []
-                // console.log(value)
                 for (let team of state.teams) {
-                    // console.log(team)
                     for(let key in team){
-                        // console.log(key)
                         if (key === 'squad' || key === "logoSrc" || key === "id" ) continue;
                         if (team[key].toString().toLowerCase().indexOf(value) != -1) {
-                            console.log(team[key], key)
                             result.push(team)
                             break
                         }
                     }
                 }
-                // console.log(result)
                 return result
             }
 

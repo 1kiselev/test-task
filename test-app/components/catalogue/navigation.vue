@@ -53,8 +53,6 @@ for (let i = 1; i <= props.numberOfPages; i++){
     gap: 5px;
     width: 100%;
     margin-top: 40px;   
-    // border: solid 2px teal;
-    
     &__move {
         height: 10px;
         width: 40px;

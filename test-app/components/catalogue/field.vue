@@ -31,24 +31,15 @@ const searchedValue = ref('')
 
 const fun = (event: Event) => {
     searchedValue.value = event.target?.value
-    // console.log(event.target.value)
 }
 
-// const teams = computed(() => useMainStore().teams);
 const arrayToPaginate = computed(() => useMainStore().getSearched(searchedValue.value));
 
 const currentPage = ref(1)
 const itemsPerPage = ref(9)
 
-// console.log(arrayToPaginate.value)
 const { paginatedArray: paginatedTeams, numberOfPages } = usePagination({ itemsPerPage, arrayToPaginate, currentPage })
 
-
-console.log(numberOfPages)
-
-watch(numberOfPages, () => {
-    console.log(numberOfPages.value)
-})
 
 const switchValue = ref(true);
 const switchFun = (event: Event) => {
@@ -63,7 +54,6 @@ const showModal = ref(false)
 const choosenTeam: Ref<Team | null> = ref(null)
 
 const chooseTeam = (team: Team) => {
-  console.log(team)
   showModal.value = true
   choosenTeam.value = team
 }
@@ -76,10 +66,6 @@ const chooseTeam = (team: Team) => {
   max-width: 1300px;
   max-height: 1300px;
   overflow: hidden;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
 
   &__tools {
     height: 30px;
@@ -87,12 +73,9 @@ const chooseTeam = (team: Team) => {
     display: flex;
     align-items: center;
     margin-left: 25px;
-    // : start;
   }
 
   &__content {
-    // width: 80%;
-
     &__grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -101,7 +84,6 @@ const chooseTeam = (team: Team) => {
     &__horizontal {
       display: flex;
       align-items: center;
-      // justify-content: center;
     }
   }
 
@@ -113,7 +95,6 @@ const chooseTeam = (team: Team) => {
 
   &__span {
     margin-left: 15px;
-    // font-size: large;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 }

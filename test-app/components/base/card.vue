@@ -41,7 +41,6 @@ const props = defineProps({
     padding: 10px;
     display: flex;
     gap: 20px;
-    // border: solid 2px rgb(81, 81, 81);
     border-radius: 20px;
 
 
@@ -62,7 +61,6 @@ const props = defineProps({
         display: flex;
         flex-direction: column;
         gap: 30px;
-        // justify-content: center;
     }
     &__value {
         margin-left: 15px;
@@ -80,7 +78,6 @@ const props = defineProps({
     }
     &__info-head {
         margin: 10px;
-        // font-weight: bold;
         font-size: large;
         font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
